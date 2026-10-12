@@ -1,0 +1,404 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DETwal | Trade Smarter</title>
+<style>
+:root {
+  --gold: #f6c75a;
+  --green: #5fe0a0;
+  --bg: #080a0f;
+  --muted: #a5adbd;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: #f5f6fa;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+header {
+  position: relative;
+  z-index: 5;
+  max-width: 1180px;
+  margin: auto;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+.logo span { color: var(--gold); }
+nav { display: flex; align-items: center; gap: 24px; }
+nav a { color: #c5cad4; }
+.btn {
+  display: inline-block;
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-weight: bold;
+  border: 1px solid transparent;
+  transition: .2s;
+}
+.btn:hover { transform: translateY(-3px); }
+.primary {
+  background: linear-gradient(135deg, #ffe7a0, var(--gold));
+  color: #17130a;
+}
+.secondary {
+  border-color: #8d7134;
+  color: var(--gold);
+  background: rgba(246,199,90,.06);
+}
+.hero {
+  min-height: 640px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 70px 20px 110px;
+  background: radial-gradient(ellipse at center, #14251f 0%, #080a0f 70%);
+}
+.chart {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .65;
+}
+.grid-lines {
+  background-image:
+    linear-gradient(#ffffff0b 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff0b 1px, transparent 1px);
+  background-size: 65px 65px;
+}
+.chart-line {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1800;
+  stroke-dashoffset: 1800;
+  animation: draw 9s linear infinite;
+}
+.chart-glow {
+  fill: none;
+  stroke: #5fe0a033;
+  stroke-width: 15;
+  filter: blur(8px);
+}
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+.hero-content {
+  max-width: 850px;
+  position: relative;
+  z-index: 2;
+}
+.tag {
+  display: inline-block;
+  padding: 9px 15px;
+  border: 1px solid #f6c75a44;
+  border-radius: 30px;
+  color: var(--gold);
+  background: #f6c75a0c;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+h1 {
+  font-size: clamp(48px, 9vw, 100px);
+  letter-spacing: -5px;
+  line-height: 1;
+  margin: 28px 0 22px;
+}
+.gold { color: var(--gold); }
+.hero p {
+  max-width: 650px;
+  margin: auto;
+  color: #b5bdca;
+  font-size: 18px;
+  line-height: 1.8;
+}
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+.small-note {
+  font-size: 12px !important;
+  color: #8993a3 !important;
+  margin-top: 25px !important;
+}
+.dashboard-label {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  border: 1px solid #ffffff20;
+  background: #080a0fcc;
+  padding: 11px 17px;
+  border-radius: 30px;
+  color: #a5adbd;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+section.products {
+  max-width: 1150px;
+  margin: auto;
+  padding: 85px 24px;
+}
+.heading {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 45px;
+}
+.kicker {
+  color: var(--gold);
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+h2 {
+  font-size: clamp(32px, 5vw, 54px);
+  letter-spacing: -2px;
+  margin: 15px 0;
+}
+.heading p, .description {
+  color: var(--muted);
+  line-height: 1.8;
+}
+.card {
+  max-width: 900px;
+  margin: auto;
+  padding: clamp(24px, 5vw, 45px);
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 35px;
+  border: 1px solid #f6c75a40;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #191d27, #0c0f16);
+  box-shadow: 0 25px 80px #0005;
+}
+.badge {
+  display: inline-block;
+  color: var(--green);
+  border: 1px solid #5fe0a044;
+  background: #5fe0a011;
+  border-radius: 7px;
+  padding: 8px 11px;
+  font-size: 12px;
+}
+h3 {
+  font-size: 32px;
+  margin: 20px 0 14px;
+}
+.features {
+  list-style: none;
+  margin-top: 25px;
+}
+.features li {
+  margin: 14px 0;
+  color: #dce1e9;
+  font-size: 14px;
+}
+.features li::before {
+  content: "✓";
+  color: var(--green);
+  margin-right: 10px;
+  font-weight: bold;
+}
+.price-panel {
+  align-self: center;
+  padding: 26px;
+  border-radius: 18px;
+  border: 1px solid #ffffff17;
+  background: #080a0f88;
+}
+.price-label { color: var(--muted); font-size: 14px; }
+.price {
+  font-size: clamp(42px, 5vw, 60px);
+  font-weight: 900;
+  letter-spacing: -3px;
+  margin: 10px 0;
+}
+.price small {
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: 0;
+}
+.return-note {
+  color: #c5cad4;
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 18px 0;
+}
+.price-panel .btn {
+  display: block;
+  text-align: center;
+}
+.disclaimer {
+  font-size: 11px;
+  color: #8993a3;
+  line-height: 1.7;
+  margin-top: 16px;
+}
+.bottom-cta {
+  text-align: center;
+  padding-top: 85px;
+}
+.bottom-cta p {
+  color: var(--muted);
+  margin: 15px 0 25px;
+}
+footer {
+  padding: 25px;
+  border-top: 1px solid #ffffff14;
+  color: #8993a3;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+@media(max-width: 700px) {
+  header { padding: 20px; }
+  nav { gap: 12px; }
+  nav .nav-link { display: none; }
+  nav .btn { padding: 11px 13px; font-size: 13px; }
+  .hero { min-height: 600px; }
+  h1 { letter-spacing: -3px; }
+  .hero p { font-size: 16px; }
+  .card { grid-template-columns: 1fr; }
+  section.products { padding: 65px 20px; }
+  .dashboard-label { font-size: 10px; }
+  footer { flex-direction: column; }
+}
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#">DET<span>wal</span></a>
+  <nav>
+    <a class="nav-link" href="#bot">Our Bot</a>
+    <a class="nav-link" href="#about">About</a>
+    <a class="btn primary" href="signup.html">Register Now ↗</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="about">
+    <div class="chart grid-lines" aria-hidden="true">
+      <svg width="100%" height="100%" viewBox="0 0 1400 700"
+           preserveAspectRatio="xMidYMid slice">
+        <path class="chart-glow"
+          d="M0 560 L80 520 L140 550 L220 450 L300 490 L380 390 L450 430 L540 330 L620 370 L710 260 L790 310 L880 210 L970 260 L1060 150 L1140 200 L1240 100 L1320 140 L1400 45"/>
+        <path class="chart-line"
+          d="M0 560 L80 520 L140 550 L220 450 L300 490 L380 390 L450 430 L540 330 L620 370 L710 260 L790 310 L880 210 L970 260 L1060 150 L1140 200 L1240 100 L1320 140 L1400 45"/>
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <div class="tag">● AUTOMATION MEETS TRADING</div>
+      <h1>Trade smarter.<br><span class="gold">Live freer.</span></h1>
+      <p>
+        Meet DETwal — AI-powered trading tools designed to support
+        your strategy, reduce repetitive work, and help you trade
+        with a clearer process.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="signup.html">Register Now ↗</a>
+        <a class="btn secondary" href="#bot">Explore Our Bot ↓</a>
+      </div>
+      <p class="small-note">
+        No guaranteed profits. Trading involves risk.
+      </p>
+    </div>
+
+    <div class="dashboard-label">
+      YOUR DASHBOARD IS COMING SOON · DETwal
+    </div>
+  </section>
+
+  <section class="products" id="bot">
+    <div class="heading">
+      <div class="kicker">MEET YOUR TRADING ASSISTANT</div>
+      <h2>Less screen time.<br>More structured trading.</h2>
+      <p>
+        Explore our first EA offering, designed for traders
+        who want tools to support a consistent trading workflow.
+      </p>
+    </div>
+
+    <article class="card">
+      <div>
+        <span class="badge">DETwal · AI EA</span>
+        <h3>DETwal Bot</h3>
+        <p class="description">
+          An automated trading tool for traders who want to simplify
+          parts of their trading process. Review its strategy,
+          compatibility, and risk settings before using it live.
+        </p>
+        <ul class="features">
+          <li>Designed for a structured trading workflow</li>
+          <li>Access after payment confirmation</li>
+          <li>Setup guidance and product updates</li>
+        </ul>
+      </div>
+
+      <div class="price-panel">
+        <div class="price-label">One-time purchase</div>
+        <div class="price">₹949 <small>INR</small></div>
+        <p class="return-note">
+          <strong>Monthly performance:</strong>
+          A 30% monthly return is an estimate, not a promise.
+          Actual results vary, and losses are possible.
+        </p>
+        <a class="btn primary" href="payment.html">Get It Now →</a>
+        <p class="disclaimer">
+          Trading involves substantial risk, including loss of capital.
+          Past or estimated performance does not guarantee future results.
+          Test on a demo account before using real funds.
+        </p>
+      </div>
+    </article>
+
+    <div class="bottom-cta">
+      <h2>Ready to explore DETwal?</h2>
+      <p>Create your account to get started.</p>
+      <a class="btn primary" href="signup.html">Create Your Account ↗</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© <span id="year"></span> DETwal. All rights reserved.</span>
+  <span>Trading carries risk. Returns are not guaranteed.</span>
+</footer>
+
+<script>
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+</script>
+
+</body>
+</html>
