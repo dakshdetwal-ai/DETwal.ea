@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080a0f">
+  <title>Create Account | DETwal</title>
+  <link rel="stylesheet" href="auth.css">
+</head>
+
+<body>
+  <header class="topbar">
+    <a href="index.html" class="brand" aria-label="DETwal home">
+      <span class="secured">SECURED BY</span>
+      <span class="brand-name">DET<span class="gold">wal</span></span>
+    </a>
+    <a href="index.html" class="back-link">← Home</a>
+  </header>
+
+  <main class="auth-layout">
+    <section class="auth-card">
+      <div class="security-icon">✦</div>
+
+      <p class="eyebrow">JOIN DETWAL</p>
+      <h1>Create your account</h1>
+      <p class="subtitle">
+        Your trading journey starts here. Create your personal account.
+      </p>
+
+      <form id="signupForm">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your full name"
+            autocomplete="name"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label for="age">Age</label>
+          <input
+            type="number"
+            id="age"
+            name="age"
+            placeholder="You must be 18 or older"
+            min="18"
+            max="120"
+            step="1"
+            required
+          >
+          <small>Registration is available only to adults aged 18+.</small>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Enter your phone number"
+            autocomplete="tel"
+            pattern="[0-9+\-() ]{7,20}"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label for="email">Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Create a strong password"
+            autocomplete="new-password"
+            minlength="12"
+            required
+          >
+          <small>Use at least 12 characters.</small>
+        </div>
+
+        <div class="field">
+          <label for="confirmPassword">Confirm password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            placeholder="Enter your password again"
+            autocomplete="new-password"
+            minlength="12"
+            required
+          >
+        </div>
+
+        <label class="terms-check">
+          <input type="checkbox" id="terms" required>
+          <span>
+            I agree to the Terms of Service and Privacy Policy.
+          </span>
+        </label>
+
+        <button type="submit" class="submit-btn">
+          Create Account <span>→</span>
+        </button>
+
+        <p id="formMessage" class="form-message" role="status"></p>
+      </form>
+
+      <div class="separator"><span>OR</span></div>
+
+      <p class="login-prompt">
+        Already have an account?
+        <a href="login.html">Log in</a>
+      </p>
+
+      <p class="security-note">
+        <span>◆</span> Your account security matters to us.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> DETwal. All rights reserved.
+    <p>Trading involves risk. Returns are not guaranteed.</p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    const form = document.getElementById("signupForm");
+    const message = document.getElementById("formMessage");
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
+
+    function checkPasswords() {
+      confirmPassword.setCustomValidity(
+        confirmPassword.value &&
+        confirmPassword.value !== password.value
+          ? "Passwords do not match."
+          : ""
+      );
+    }
+
+    password.addEventListener("input", checkPasswords);
+    confirmPassword.addEventListener("input", checkPasswords);
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      checkPasswords();
+
+      if (!form.reportValidity()) return;
+
+      const age = Number(document.getElementById("age").value);
+
+      if (!Number.isInteger(age) || age < 18 || age > 120) {
+        message.textContent = "You must be at least 18 years old to register.";
+        message.className = "form-message error";
+        return;
+      }
+
+      message.textContent =
+        "The form is ready. Registration will work after we connect the backend.";
+      message.className = "form-message info";
+    });
+  </script>
+</body>
+</html>
