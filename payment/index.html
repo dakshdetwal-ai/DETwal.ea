@@ -5,27 +5,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#080a0f">
+  <meta name="description" content="Review your DETwal Bot order before proceeding to payment.">
   <title>Secure Checkout | DETwal</title>
 
   <style>
     :root {
       --gold: #f6c75a;
+      --gold-light: #ffe7a0;
       --bg: #080a0f;
       --card: #11151d;
       --muted: #a5adbd;
       --border: #303541;
+      --green: #5fe0a0;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       min-height: 100vh;
-      background: radial-gradient(ellipse at top, #19271f, var(--bg) 65%);
+      background: radial-gradient(
+        ellipse at top,
+        #19271f,
+        var(--bg) 65%
+      );
       color: #f5f6fa;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     header {
       max-width: 1100px;
@@ -34,6 +52,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 20px;
     }
 
     .logo {
@@ -42,9 +61,19 @@
       letter-spacing: -2px;
     }
 
-    .logo span { color: var(--gold); }
+    .logo span {
+      color: var(--gold);
+    }
 
-    .back { color: var(--muted); font-size: 13px; }
+    .back {
+      color: var(--muted);
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .back:hover {
+      color: var(--gold);
+    }
 
     main {
       max-width: 1000px;
@@ -52,7 +81,10 @@
       padding: 20px;
     }
 
-    .heading { text-align: center; margin-bottom: 35px; }
+    .heading {
+      text-align: center;
+      margin-bottom: 35px;
+    }
 
     .eyebrow {
       color: var(--gold);
@@ -67,7 +99,10 @@
       margin: 15px 0;
     }
 
-    .subtitle { color: var(--muted); line-height: 1.7; }
+    .subtitle {
+      color: var(--muted);
+      line-height: 1.7;
+    }
 
     .checkout {
       display: grid;
@@ -76,18 +111,22 @@
     }
 
     .panel {
+      min-width: 0;
       padding: 30px;
-      background: rgba(17, 21, 29, .96);
+      background: rgba(17, 21, 29, 0.96);
       border: 1px solid var(--border);
       border-radius: 18px;
     }
 
-    h2 { font-size: 20px; margin-bottom: 25px; }
+    h2 {
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
 
     .product {
       padding: 20px;
       background: #090c12;
-      border: 1px solid #f6c75a35;
+      border: 1px solid rgba(246, 199, 90, 0.21);
       border-radius: 13px;
     }
 
@@ -98,7 +137,10 @@
       font-weight: bold;
     }
 
-    .product h3 { font-size: 24px; margin: 14px 0 8px; }
+    .product h3 {
+      font-size: 24px;
+      margin: 14px 0 8px;
+    }
 
     .product p {
       color: var(--muted);
@@ -112,7 +154,10 @@
       margin-top: 20px;
     }
 
-    .price small { font-size: 13px; color: var(--muted); }
+    .price small {
+      font-size: 13px;
+      color: var(--muted);
+    }
 
     .line {
       height: 1px;
@@ -128,18 +173,29 @@
       font-size: 14px;
     }
 
-    .summary-row span:first-child { color: var(--muted); }
+    .summary-row span:first-child {
+      color: var(--muted);
+    }
 
-    .total { font-size: 19px; font-weight: bold; }
+    .summary-row span:last-child {
+      text-align: right;
+    }
+
+    .total {
+      font-size: 19px;
+      font-weight: bold;
+    }
 
     .secure-note {
       margin-top: 20px;
-      color: #a5adbd;
+      color: var(--muted);
       font-size: 12px;
       line-height: 1.8;
     }
 
-    .secure-note strong { color: #5fe0a0; }
+    .secure-note strong {
+      color: var(--green);
+    }
 
     label {
       display: block;
@@ -149,39 +205,63 @@
 
     input {
       width: 100%;
+      min-height: 48px;
       padding: 14px;
       background: #090c12;
       border: 1px solid var(--border);
       border-radius: 9px;
-      color: white;
+      color: #fff;
       font-size: 14px;
       outline: none;
     }
 
-    input:focus { border-color: var(--gold); }
+    input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(246, 199, 90, 0.09);
+    }
 
     .pay-button {
       display: block;
       width: 100%;
+      min-height: 51px;
       padding: 16px;
       margin-top: 24px;
       border: 0;
       border-radius: 10px;
-      background: linear-gradient(135deg, #ffe7a0, var(--gold));
+      background: linear-gradient(
+        135deg,
+        var(--gold-light),
+        var(--gold)
+      );
       color: #17130a;
       font-size: 15px;
       font-weight: bold;
       cursor: pointer;
+      transition: filter 0.2s, transform 0.2s;
     }
 
-    .pay-button:hover { filter: brightness(1.06); }
+    .pay-button:hover {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+    }
+
+    .pay-button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+    }
 
     .message {
       display: none;
       margin-top: 15px;
-      color: var(--gold);
+      padding: 12px;
+      color: var(--gold-light);
+      background: rgba(246, 199, 90, 0.06);
+      border: 1px solid rgba(246, 199, 90, 0.2);
+      border-radius: 9px;
       font-size: 13px;
       line-height: 1.6;
+      overflow-wrap: anywhere;
     }
 
     .disclaimer {
@@ -195,21 +275,63 @@
       text-align: center;
       padding: 25px;
       color: #858e9e;
-      border-top: 1px solid #ffffff14;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       font-size: 12px;
     }
 
     @media (max-width: 700px) {
-      .checkout { grid-template-columns: 1fr; }
-      main { margin-top: 20px; }
-      .panel { padding: 23px; }
+      .checkout {
+        grid-template-columns: 1fr;
+      }
+
+      main {
+        margin-top: 20px;
+      }
+
+      .panel {
+        padding: 23px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      header {
+        padding: 20px;
+      }
+
+      .logo {
+        font-size: 26px;
+      }
+
+      .back {
+        font-size: 12px;
+      }
+
+      main {
+        padding: 15px;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
 
 <body>
   <header>
-    <a class="logo" href="../home/">DET<span>wal</span></a>
+    <a class="logo" href="../home/" aria-label="DETwal home">
+      DET<span>wal</span>
+    </a>
+
     <a class="back" href="../home/">← Back to home</a>
   </header>
 
@@ -229,10 +351,12 @@
         <div class="product">
           <span class="product-tag">DETWAL · AI EA</span>
           <h3>DETwal Bot</h3>
+
           <p>
             Automated trading software. Review compatibility,
             strategy details, and risks before purchasing.
           </p>
+
           <div class="price">₹949 <small>INR</small></div>
         </div>
 
@@ -265,12 +389,14 @@
 
         <form id="checkoutForm">
           <label for="email">Order confirmation email</label>
+
           <input
             type="email"
             id="email"
             name="email"
             placeholder="you@example.com"
             autocomplete="email"
+            maxlength="254"
             required
           >
 
@@ -278,12 +404,17 @@
             Continue to Payment →
           </button>
 
-          <p id="message" class="message" role="status"></p>
+          <p
+            id="message"
+            class="message"
+            role="status"
+            aria-live="polite"
+          ></p>
         </form>
 
         <p class="disclaimer">
           This page does not process payments yet. You will not be
-          charged here. A verified gateway integration is required
+          charged here. A verified payment gateway is required
           before accepting payments. Trading involves risk, and
           returns are not guaranteed.
         </p>
@@ -304,9 +435,14 @@
       function(event) {
         event.preventDefault();
 
+        const form = event.currentTarget;
         const message = document.getElementById("message");
+
+        if (!form.reportValidity()) return;
+
         message.textContent =
-          "Checkout design is ready. Payment processing will be available after secure gateway integration.";
+          "Payment processing is not connected yet. No payment has been taken.";
+
         message.style.display = "block";
       }
     );
