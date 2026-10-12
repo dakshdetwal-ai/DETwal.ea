@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080a0f">
+  <title>Reset Password | DETwal</title>
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <span class="secured">SECURED BY</span>
+    <span class="brand-name">DET<span class="gold">wal</span></span>
+  </a>
+  <a href="login.html" class="back-link">← Back to login</a>
+</header>
+
+<main class="auth-layout">
+  <section class="auth-card">
+    <div class="security-icon">✦</div>
+    <p class="eyebrow">ACCOUNT RECOVERY</p>
+    <h1>Forgot password?</h1>
+    <p class="subtitle">
+      Enter your registered email address to begin recovering
+      access to your DETwal account.
+    </p>
+
+    <form id="resetForm">
+      <div class="field">
+        <label for="email">Email address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+        >
+      </div>
+
+      <button type="submit" class="submit-btn">
+        Request Password Reset <span>→</span>
+      </button>
+
+      <p id="formMessage" class="form-message" role="status"></p>
+    </form>
+
+    <div class="separator"><span>OR</span></div>
+
+    <p class="login-prompt">
+      Remembered your password?
+      <a href="login.html">Log in</a>
+    </p>
+
+    <p class="security-note">
+      <span>◆</span> Your account security matters to us.
+    </p>
+  </section>
+</main>
+
+<footer>
+  © <span id="year"></span> DETwal. All rights reserved.
+  <p>Trading involves risk. Returns are not guaranteed.</p>
+</footer>
+
+<script>
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+document.getElementById("resetForm").addEventListener(
+  "submit",
+  function(event) {
+    event.preventDefault();
+
+    const message = document.getElementById("formMessage");
+
+    message.textContent =
+      "Password recovery is not connected yet. We'll enable secure recovery when the backend is ready.";
+    message.className = "form-message info";
+  }
+);
+</script>
+
+</body>
+</html>
