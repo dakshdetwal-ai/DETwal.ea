@@ -1,20 +1,3 @@
-
-.forgot-row {
-  display: flex;
-  justify-content: flex-end;
-  margin: -5px 0 22px;
-}
-
-.forgot-row a {
-  color: var(--gold);
-  font-size: 12px;
-}
-
-.forgot-row a:hover {
-  color: var(--gold-light);
-  text-decoration: underline;
-}
-
 /* FORGOT PASSWORD LINK */
 
 .forgot-row {
