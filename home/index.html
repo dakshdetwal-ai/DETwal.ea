@@ -4,16 +4,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080a0f">
 <title>DETwal | Trade Smarter</title>
+
 <style>
 :root {
   --gold: #f6c75a;
   --green: #5fe0a0;
   --bg: #080a0f;
   --muted: #a5adbd;
-  <a href="../signup/">Register Now</a>
-  <a href="../payment/">Get It Now</a>
 }
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -23,6 +24,7 @@ body {
   overflow-x: hidden;
 }
 a { text-decoration: none; color: inherit; }
+
 header {
   position: relative;
   z-index: 5;
@@ -33,14 +35,11 @@ header {
   align-items: center;
   justify-content: space-between;
 }
-.logo {
-  font-size: 30px;
-  font-weight: 900;
-  letter-spacing: -2px;
-}
+.logo { font-size: 30px; font-weight: 900; letter-spacing: -2px; }
 .logo span { color: var(--gold); }
 nav { display: flex; align-items: center; gap: 24px; }
 nav a { color: #c5cad4; }
+
 .btn {
   display: inline-block;
   padding: 14px 22px;
@@ -59,6 +58,7 @@ nav a { color: #c5cad4; }
   color: var(--gold);
   background: rgba(246,199,90,.06);
 }
+
 .hero {
   min-height: 640px;
   position: relative;
@@ -76,6 +76,7 @@ nav a { color: #c5cad4; }
   width: 100%;
   height: 100%;
   opacity: .65;
+  pointer-events: none;
 }
 .grid-lines {
   background-image:
@@ -83,6 +84,7 @@ nav a { color: #c5cad4; }
     linear-gradient(90deg, #ffffff0b 1px, transparent 1px);
   background-size: 65px 65px;
 }
+.chart svg { width: 100%; height: 100%; }
 .chart-line {
   fill: none;
   stroke: var(--green);
@@ -157,6 +159,7 @@ h1 {
   font-size: 12px;
   letter-spacing: 1px;
 }
+
 section.products {
   max-width: 1150px;
   margin: auto;
@@ -203,14 +206,8 @@ h2 {
   padding: 8px 11px;
   font-size: 12px;
 }
-h3 {
-  font-size: 32px;
-  margin: 20px 0 14px;
-}
-.features {
-  list-style: none;
-  margin-top: 25px;
-}
+h3 { font-size: 32px; margin: 20px 0 14px; }
+.features { list-style: none; margin-top: 25px; }
 .features li {
   margin: 14px 0;
   color: #dce1e9;
@@ -247,24 +244,16 @@ h3 {
   line-height: 1.7;
   margin: 18px 0;
 }
-.price-panel .btn {
-  display: block;
-  text-align: center;
-}
+.price-panel .btn { display: block; text-align: center; }
 .disclaimer {
   font-size: 11px;
   color: #8993a3;
   line-height: 1.7;
   margin-top: 16px;
 }
-.bottom-cta {
-  text-align: center;
-  padding-top: 85px;
-}
-.bottom-cta p {
-  color: var(--muted);
-  margin: 15px 0 25px;
-}
+.bottom-cta { text-align: center; padding-top: 85px; }
+.bottom-cta p { color: var(--muted); margin: 15px 0 25px; }
+
 footer {
   padding: 25px;
   border-top: 1px solid #ffffff14;
@@ -275,6 +264,7 @@ footer {
   gap: 15px;
   flex-wrap: wrap;
 }
+
 @media(max-width: 700px) {
   header { padding: 20px; }
   nav { gap: 12px; }
@@ -288,30 +278,31 @@ footer {
   .dashboard-label { font-size: 10px; }
   footer { flex-direction: column; }
 }
+
 @media(prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
   }
 }
 </style>
 </head>
-<body>
 
+<body>
 <header>
-  <a class="logo" href="#">DET<span>wal</span></a>
+  <a class="logo" href="./">DET<span>wal</span></a>
   <nav>
     <a class="nav-link" href="#bot">Our Bot</a>
     <a class="nav-link" href="#about">About</a>
-    <a class="btn primary" href="signup.html">Register Now ↗</a>
+    <a class="btn primary" href="../signup/">Register Now ↗</a>
   </nav>
 </header>
 
 <main>
   <section class="hero" id="about">
     <div class="chart grid-lines" aria-hidden="true">
-      <svg width="100%" height="100%" viewBox="0 0 1400 700"
-           preserveAspectRatio="xMidYMid slice">
+      <svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice">
         <path class="chart-glow"
           d="M0 560 L80 520 L140 550 L220 450 L300 490 L380 390 L450 430 L540 330 L620 370 L710 260 L790 310 L880 210 L970 260 L1060 150 L1140 200 L1240 100 L1320 140 L1400 45"/>
         <path class="chart-line"
@@ -328,12 +319,10 @@ footer {
         with a clearer process.
       </p>
       <div class="actions">
-        <a class="btn primary" href="signup.html">Register Now ↗</a>
+        <a class="btn primary" href="../signup/">Register Now ↗</a>
         <a class="btn secondary" href="#bot">Explore Our Bot ↓</a>
       </div>
-      <p class="small-note">
-        No guaranteed profits. Trading involves risk.
-      </p>
+      <p class="small-note">No guaranteed profits. Trading involves risk.</p>
     </div>
 
     <div class="dashboard-label">
@@ -375,7 +364,7 @@ footer {
           A 30% monthly return is an estimate, not a promise.
           Actual results vary, and losses are possible.
         </p>
-        <a class="btn primary" href="payment.html">Get It Now →</a>
+        <a class="btn primary" href="../payment/">Get It Now →</a>
         <p class="disclaimer">
           Trading involves substantial risk, including loss of capital.
           Past or estimated performance does not guarantee future results.
@@ -387,7 +376,7 @@ footer {
     <div class="bottom-cta">
       <h2>Ready to explore DETwal?</h2>
       <p>Create your account to get started.</p>
-      <a class="btn primary" href="signup.html">Create Your Account ↗</a>
+      <a class="btn primary" href="../signup/">Create Your Account ↗</a>
     </div>
   </section>
 </main>
@@ -401,6 +390,5 @@ footer {
 document.getElementById("year").textContent =
   new Date().getFullYear();
 </script>
-
 </body>
 </html>
