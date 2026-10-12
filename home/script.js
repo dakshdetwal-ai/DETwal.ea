@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Smooth scrolling for homepage section links
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener("click", event => {
       const targetId = link.getAttribute("href");
@@ -18,34 +22,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (target) {
         event.preventDefault();
+
         target.scrollIntoView({
-          behavior: "smooth",
+          behavior: reduceMotion ? "auto" : "smooth",
           block: "start"
         });
       }
     });
   });
 
-  // Check that signup and payment pages exist later
-  document.querySelectorAll(
-    'a[href="signup.html"], a[href="payment.html"]'
-  ).forEach(link => {
-    link.addEventListener("click", () => {
-      console.log("DETwal navigation:", link.getAttribute("href"));
-    });
-  });
-
-  // Respect visitors who prefer reduced motion
-  const reduceMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
+  // Keep chart animations accessible
   if (reduceMotion) {
     document.querySelectorAll(".chart-line").forEach(line => {
       line.style.animation = "none";
       line.style.strokeDashoffset = "0";
     });
   }
+
+  // Log the current navigation destinations for debugging
+  document.querySelectorAll("a[href]").forEach(link => {
+    const href = link.getAttribute("href");
+
+    if (
+      href === "../signup/" ||
+      href === "../payment/" ||
+      href === "../login/" ||
+      href === "../home/"
+    ) {
+      console.log("DETwal navigation:", href);
+    }
+  });
 
   console.log("DETwal homepage initialized successfully.");
 });
